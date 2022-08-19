@@ -1,0 +1,336 @@
+---
+title: "Internal R Package for Organization"
+subtitle: "&#x2694;&#xFE0F; xaringan +<br/>&#x1F60E; xaringanthemer"  
+author: 
+  - "Dewi Amaliah"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    seal: false
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+library(knitr)
+
+opts_chunk$set(echo = FALSE, 
+               warning = FALSE, 
+               message = FALSE,
+               cache = TRUE, 
+               cache.path = "cache/",
+               fig.retina = 3)
+library(fontawesome)
+library(tidyverse)
+library(xaringanExtra)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#6E2C00",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF"
+)
+```
+
+class: left, middle
+
+background-image:url(images/cover-bg.png)
+background-size: cover
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+[`r fa("linkedin", fill = "#6E2C00")` Dewi Lestari Amaliah](https://www.linkedin.com/in/dewi-lestari-amaliah-579b231a1/) 
+
+[`r fa("github", fill = "#6E2C00")` Dewi Amaliah](https://github.com/Dewi-Amaliah)
+
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+# 📜 Today's Menu
+
+<br> 
+
+### ☕ Intro to `r fa("r-project", fill = "#6E2C00")` and `r fa("r-project", fill = "#6E2C00")` Package
+### ☕ `r fa("r-project", fill = "#6E2C00")` in Official Statistics
+### ☕ `r fa("r-project", fill = "#6E2C00")` Package for Internal Organization
+### ☕ Little Demo
+
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+# What is `r fa("r-project", fill = "#6E2C00")`?
+
+.pull-left[
+
+```{r, out.width="40%", fig.align='center'}
+include_graphics(here::here("images/Rlogo.png"))
+```
+
+> "`r fa("r-project", fill = "#6E2C00")` is not just a programming language, but it is also an interactive environment for doing data science"  
+> ~ Hadley Wickham
+]
+
+.puul-right[
+.center[
+Other tools for doing data science
+
+```{r, out.width="20%"}
+include_graphics(here::here("images/other-tools.png"))
+```
+
+<br>
+
+Also other tools
+
+```{r, out.width="20%"}
+include_graphics(here::here("images/other-tools-2.png"))
+```
+]
+]
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+# `r fa("r-project", fill = "#6E2C00")` Package
+
+```{r, echo = FALSE}
+use_panelset()
+```
+
+.panelset[
+.panel[.panel-name[📦 R-Package]
+
+- Shareable code
+- A set of functions and its documentation
+- Can also contains data and report template
+
+]
+.panel[.panel-name[📦 Data]
+
+```{r echo = TRUE}
+# load data in the
+starwars <- dplyr::starwars
+
+head(starwars, n=5)
+```
+]
+
+.panel[.panel-name[📦 Functions]
+
+```{r echo = TRUE, results='hide'}
+library(DT)
+library(dplyr)
+
+# load data in the
+starwars %>%
+  dplyr::select(name,
+         height,
+         mass,
+         hair_color) %>%
+  head(n = 30) %>%
+  kable(caption = "Starwars Cast Bio") %>%
+  kable_styling(bootstrap_options = "striped",
+                position = "center")
+```
+]
+.panel[.panel-name[📦 Output]
+
+```{r }
+library(DT)
+library(dplyr)
+
+# load data in the
+starwars %>%
+  dplyr::select(name,
+         height,
+         mass,
+         hair_color) %>%
+  head(n = 5) %>%
+  kable(caption = "Starwars Cast Bio") %>%
+  kable_styling(bootstrap_options = "striped",
+                position = "center")
+```
+]
+
+.panel[.panel-name[📦 Documentation]
+
+- Function Documentation
+```{r, eval = FALSE, echo = TRUE}
+#' Add together two numbers
+#' @param x A number.
+#' @param y A number.
+#' @return The sum of `x` and `y`.
+#' @examples
+#' add(1, 1)
+#' add(10, 1)
+add <- function(x, y) {
+  x + y}
+```
+
+- Vignette
+
+```{r echo = TRUE, eval = FALSE}
+vignette(dplyr)
+```
+
+- Website
+]
+]
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+# `r fa("r-project", fill = "#6E2C00")` Package in Official Statistics
+
+- Package are generally stored on Comprehensive R Archive Network (CRAN). 
+- As of June 2022, there are more than 18,000 packages on CRAN.
+--
+
+- There is a [CRAN Task View of **Official Statistics & Survey Statistics**](https://cran.r-project.org/web/views/OfficialStatistics.html): comprises of about 120 packages.
+
+```{r, out.width="90%", fig.align='center'}
+include_graphics(here::here("images/CTV.png"))
+```
+
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+
+# Internal `r fa("r-project", fill = "#6E2C00")` Package for Organization
+
+.pull-left[
+
+#### 📦 Why Write an `r fa("r-project", fill = "#6E2C00")` Package?
+
+- Simplify and document repetitive tasks.
+- More reproducible.
+- Having a standardized pipeline/workflow.
+- Easy to be shared and distributed.
+]
+
+.pull-right[
+]
+
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+
+# Internal `r fa("r-project", fill = "#6E2C00")` Package for Organization
+
+.pull-left[
+
+#### 📦 Why Write an `r fa("r-project", fill = "#6E2C00")` Package?
+
+- Simplify and document repetitive tasks.
+- More reproducible.
+- Having a standardized pipeline/workflow.
+- Easy to be shared and distributed.
+]
+
+.pull-right[
+#### 📦 What will You Need?
+
+- Specify your needs.
+- Get these packages.
+
+```{r, out.width = "70%", fig.align='center'}
+knitr::include_graphics(here::here("images/packages.png"))
+```
+
+- Write, document, test, and check your code. 
+]
+
+---
+
+background-image:url(images/bg.png)
+background-size: cover
+
+# Create an R-Package
+
+.panelset[
+.panel[.panel-name[📦 R-Package Component]
+
+```{r, out.width="40%", fig.align='center'}
+include_graphics(here::here("images/components.png"))
+```
+
+
+]
+
+.panel[.panel-name[📦 The Steps]
+
+```{r echo=TRUE, eval=FALSE}
+# In the Console
+
+# 1. Create the skeleton package
+devtools::create(here::here("susenas"))
+# 2. Create a function
+usethis::use_r("read_susenas")
+# 3. If using another package in the function, use that package so that its documented
+usethis::use_package("foreign", type = "Imports")
+# 4. Document the function
+devtools::document()
+# 5. Load, Check, Build, and Install
+devtools::load_all()
+devtools::check()
+devtools::build()
+devtools::install()
+```
+]
+
+.panel[.panel-name[📦 Additional (Important) Steps]
+
+```{r echo=TRUE, eval=FALSE}
+# In the Console
+
+# 6. Edit the package's metadata (Description)
+# 7. Test the function using testthat package 
+usethis::use_test("read_susenas")
+# 8. Build the vignette
+usethis::use_vignette(vig, title = "Susenas Package Manual")
+# 9. Store it in Github repo as development version
+```
+
+]
+]
+
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+class: center
+# Mari Kita Coba!
+
+```{r}
+knitr::include_graphics(here::here("images/pentol.gif"))
+```
+
+---
+background-image:url(images/bg.png)
+background-size: cover
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
