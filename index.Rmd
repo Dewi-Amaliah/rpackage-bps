@@ -2,7 +2,7 @@
 title: "Internal R Package for Organization"
 subtitle: "&#x2694;&#xFE0F; xaringan +<br/>&#x1F60E; xaringanthemer"  
 author: 
-  - "Dewi Amaliah"
+  - "Dewi Lestari Amaliah"
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
